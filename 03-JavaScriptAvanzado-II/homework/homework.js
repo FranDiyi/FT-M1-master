@@ -47,6 +47,21 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
+  //creo objeto
+  let obj = {};
+  //closure
+  return function (arg){
+    //veo si el argumento está dentro del objeto
+    if(obj.hasOwnProperty(arg)){
+      //si está retorno 
+      return obj[arg];
+    }else{
+      //si no está, realizo el callback y guardo
+      obj[arg] = cb(arg);
+      //retorno el nuevo resultado
+      return obj[arg];      
+    }
+  }  
 }
 
 // Bind
